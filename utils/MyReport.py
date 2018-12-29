@@ -66,7 +66,7 @@ def create_pdf(
     pdfmetrics.registerFont(TTFont('song', './ttf/汉仪大宋简.ttf'))
     can.drawImage('./image/a.png', 0, 0, 596, 843)
     # 加头像
-    can.drawImage(head_image, 69, 486, height=0.53 * inch, width=0.63 * inch)
+    # can.drawImage(head_image, 69, 486, height=0.53 * inch, width=0.63 * inch)
     # 加关键词
     key_words = key_words
     can.setFillColor(HexColor(0x01f7fd))

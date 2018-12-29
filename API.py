@@ -18,16 +18,18 @@ def input():
         '''--- yunque数据 ---'''
         if flask.request.method == 'POST':
             json_yq = request.form.get('data')
+            data = request.get_data().decode("UTF-8").replace(" ","").replace("\t","").strip()
+            json_re = json.loads(data)
             print('post方式')
         else:
             json_yq = request.args.get('data')
             print('get方式')
-        print('[Report]json数据', json_yq)
+        print('[Report]json数据', data)
         '''--- 测试数据 --'''
         # json_yq = '{"success":"success","BestTeams": {"content": ["在吗"],"date": "2018年11月15日","file": 9,"name": "test","time": 7,"userid": "20411542261473232"},"Cosim": {"fengxian":1,"chuangxin":1,"dataRadar": 0.4043,"project": 9,"qiushi": 1,"quanju": 1,"task": 9,"taskRadar": 0.5409},"ReportOthers": {"userId":"12121212","firstblood": "2018年00月00日","head": "/image/我.png","radarTalk": 0.5768,"radarTool": 0,"talkSum": 148},"Search": {"body": {"personProportion": 0.5772,"personYearTotal": 171,"yearTotal": 123},"code": 1000,"msg": ""},"Starfriends": {"content":[{"content":"在吗"}],"date": "2018-11-19","file": 4,"name": "设计师3","time": 148,"userid": "10000025600000"},"KnowledgeBehavior": {"knowledgeReadCount": 120,"knowledgeSharedCount": 1,"knowledgeUploadCount": 121,"readDomain": "无","uploadDomain": "专业分类"}}'
 
-        data_yq = json.loads(json_yq)
-        if data_yq["success"] == "success":
+        data_yq = json_re
+        if json_re["success"] == "success":
             '''---------------------- 能力值 ----------------------'''
             value_radar = []
             value_radar.append(data_yq["Cosim"]["taskRadar"])                 # 任务（坤）
